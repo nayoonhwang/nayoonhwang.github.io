@@ -14,7 +14,7 @@ Kubernetes로 작업할 때 사용하는 것은 Kubectl 이라는 kubernetes 용
 쿠버네티스에는 Object라는 개념이 있는데, 예를 들어 Application 배포 시에도 이런 배포용 Object를 만들어 사용하는 것이다. 이 Object는 Yaml file 형식으로 표현할 수 있다.
 
 아래는 예시이다.
-~~~
+~~~yaml
 apiVersion: apps/v1 # apps/v1beta2를 사용하는 1.9.0보다 더 이전의 버전용
 kind: Deployment
 metadata:
@@ -47,12 +47,12 @@ Pod은 Kubernetes의 가장 작은 개념이자 핵심 개념이다. 한개의 �
 
 ## Object 생성하기
 
-~~~
-Kubectl apply -f config.yml
+~~~bash
+kubectl apply -f config.yml
 ~~~
 yaml file 에 정의한 바를 기반으로 deployment/service를 생성할 수 있다. 다른 방식으로도 생성할 수 있지만, 이렇게 생성하는 것을 권장하고 있다.
 
-~~~
+~~~bash
 kubectl create -f config.yml
 ~~~
 이런식으로 생성해도 되지만, apply를 해도 만약 해당 이름의 deployment가 존재하지 않을 경우 생성해주기 때문에 create를 굳이 쓸필요가없다.

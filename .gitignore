@@ -1,3 +1,4 @@
+.DS_*
 _site
 .sass-cache
 .jekyll-cache

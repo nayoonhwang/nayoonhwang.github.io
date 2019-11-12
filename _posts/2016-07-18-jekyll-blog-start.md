@@ -16,10 +16,9 @@ tags: home work coding matilda38.github.io
 
 댓글 시스템은 두가지가 가능합니다. 1. facebook 2. disqus 1번의 단점은 facebook 로그인을 해야한다는것...그래서 어쩔수 없이 disqus에 가입 한후 install 절차를 수행하였습니다.
 
-universal code를 클릭하면 제공되는 코드를 이용하였는데요. comments.html를 _includes 폴더 안에 넣어 두었지요. 물론 comments.html에는 해당 universal code가 들어있습니다.
+universal code를 클릭하면 제공되는 코드를 이용하였는데요. comments.html를 includes 폴더 안에 넣어 두었지요. 물론 comments.html 에는 해당 universal code가 들어있습니다.
 
 일단 config.yml에서 disqus_shortname=제 disqus 계정의 username 을 쓰고
-
 post.html에
 
 {% highlight html linenos=table%}

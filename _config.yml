@@ -18,16 +18,16 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: matilda38
+title: Good Things
 email: matilda38@naver.com
 
 description: 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: 'https://matilda38.github.io' # the base hostname & protocol for your site
+url: 'https://nayoonhwang.github.io' # the base hostname & protocol for your site
 github_username:  matilda38
 
 github:
- - repo: https://github.com/matilda38/matilda38.github.io
+ - repo: https://github.com/nayoonhwang/nayoonhwang.github.io
 
 # Build settings
 remote_theme: chesterhow/tale
