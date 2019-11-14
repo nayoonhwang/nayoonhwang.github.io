@@ -30,7 +30,7 @@ django 에서 사용할 데이터베이스 설정을 담은 settings.py 파일
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mls-admin-local',
+        'NAME': 'sampleDatabase',
         'USER': 'postgres',
         'HOST': 'db',
         'PORT': '5432',
