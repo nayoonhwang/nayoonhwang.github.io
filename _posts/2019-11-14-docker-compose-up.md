@@ -9,7 +9,7 @@ tags: docker
 [큰 참고가 된 게시물](https://www.44bits.io/ko/post/almost-perfect-development-environment-with-docker-and-docker-compose#ports)
 
 # 개발환경 구성
-여러가지 다른 환경에 동일한 개발 환경을 구성할 수 있도로 하기 위해 Docker를 사용한다
+여러가지 다른 환경에 동일한 개발 환경을 구성할 수 있도록 하기 위해 Docker를 사용한다
 
 # docker-compose 의 필요성
 Docker 로 개발환경을 구성할때 예를 들어 Web Application 과 Database 두 개의 서버를 띄워야한다고 하면,
@@ -25,7 +25,7 @@ docker run -it --rm \
     ./manage.py runserver 0:8000
 ~~~
 
-settings.py
+django 에서 사용할 데이터베이스 설정을 담은 settings.py 파일
 ~~~python
 DATABASES = {
     'default': {
@@ -74,9 +74,8 @@ docker run -it --rm \
 
 > 게다가 link 옵션은 deprecate 예정이다.
 
-이를 위해서 docker-compose를 이용할 수 있다.
-
-컨테이너 실행에 필요한 옵션을 기술할 수 있고, 컨테이너간 실행 순서나 의존성도 관리할 수 있는 docker-compose.yml라는 파일을 만들면서 docker-compose를 이해할 수 있다.
+이를 위해서 docker-compose를 이용할 수 있다. 이름에서 떠오르는 composer 와 비슷하게 컨테이너의 관리도구 같은 느낌이다.
+docker-compose.yml 파일을 이용하여 컨테이너 실행에 필요한 옵션을 기술할 수 있고, 컨테이너간 실행 순서나 의존성도 관리할 수 있다.
 
 ## docker-compose.yml
 
@@ -114,7 +113,11 @@ services:
       DJANGO_SETTINGS_MODULE: sampleApplication.settings.default
 ~~~
 
-위에 좀 복잡하게 했던걸 위와 같은 compose 파일을 작성하면 쉽게 동작시킬 수 있다. compose 에서는 link같은 것 필요없이도, 서비스 끼리 이름으로 통신가능하다. 즉 web에서 데이터베이스에 접근할때 단순히 db로 접근가능하다. django의 settings.py에 database 설정의 host를 'db'로 해놓았기 때문에 db에 접속을 시도할텐데 이렇게 하면 접근가능하다. 또는 compose 내에 'links'라는 옵션을 통해 db 외에 다른 이름을 alias시켜줄 수도 있다. mydatabase라던지...?
+위에 좀 복잡하게 했던걸 위와 같은 compose 파일을 작성하면 쉽게 동작시킬 수 있다. 
+
+compose 에서는 link같은 것 필요없이도, 서비스 끼리 이름으로 **통신가능**하다. 즉 위 예시에는 web에서 데이터베이스에 접근할때 단순히 다른 서비스인 db로 별다른 조치 없이 접근가능하다. Application 컨테이너가 뜰때 django의 settings.py에 database 설정의 host를 'db'로 해놓았기 때문에 이에 접근을 시도할 것이다. 예를 들어 settings.py 에 database host를 localhost라고 해놓았다면 접속이 안될것이다.
+
+db라는 이름이 마음에 들지 않는다면 또는 compose 내에 'links'라는 옵션을 통해 db 외에 다른 이름을 alias시켜줄 수도 있다. mydatabase라던지...?
 
 첨에 좀 헤맸던건, 자꾸 데이터베이스가 없다느니, role 이 존재하지 않는다느니 하는 문제였는데, 
 
