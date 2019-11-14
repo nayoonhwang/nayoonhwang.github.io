@@ -72,6 +72,8 @@ docker run -it --rm \
 
 하지만, 이런식으로 하게 되면 조금 불편한 것이 사실이다. 이렇게 순차적으로 컨테이너를 실행시키는 것보단 한번 주루룩 설치하는 것이 아무래도 편할 것이다.
 
+> 게다가 link 옵션은 deprecate 예정이다.
+
 이를 위해서 docker-compose를 이용할 수 있다.
 
 컨테이너 실행에 필요한 옵션을 기술할 수 있고, 컨테이너간 실행 순서나 의존성도 관리할 수 있는 docker-compose.yml라는 파일을 만들면서 docker-compose를 이해할 수 있다.
@@ -112,7 +114,7 @@ services:
       DJANGO_SETTINGS_MODULE: sampleApplication.settings.default
 ~~~
 
-위에 좀 복잡하게 했던걸 위와 같은 compose 파일을 작성하면 쉽게 동작시킬 수 있다. 
+위에 좀 복잡하게 했던걸 위와 같은 compose 파일을 작성하면 쉽게 동작시킬 수 있다. compose 에서는 link같은 것 필요없이도, 서비스 끼리 이름으로 통신가능하다. 즉 web에서 데이터베이스에 접근할때 단순히 db로 접근가능하다. django의 settings.py에 database 설정의 host를 'db'로 해놓았기 때문에 db에 접속을 시도할텐데 이렇게 하면 접근가능하다. 또는 compose 내에 'links'라는 옵션을 통해 db 외에 다른 이름을 alias시켜줄 수도 있다. mydatabase라던지...?
 
 첨에 좀 헤맸던건, 자꾸 데이터베이스가 없다느니, role 이 존재하지 않는다느니 하는 문제였는데, 
 
@@ -128,6 +130,7 @@ docker-compose down
 기존 컨테이너와 뭔가가 충돌했던 모양이다. 
 
 이제 실행시켜보면 된다. --force-recreate옵션을 통해 무조건 컨테이너를 다시 만드는 옵션을 줄 수있다.
+
 ~~~bash
 docker-compose up --force-recreate
 ~~~
