@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "docker-compose up"
-date: 2019-11-13
+date: 2019-11-14
 categories: docker
 tags: docker
 ---
