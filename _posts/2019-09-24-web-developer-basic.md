@@ -6,3 +6,8 @@ categories: golang
 ---
 
 https://engineering.videoblocks.com/web-architecture-101-a3224e126947
+
+cmd+ shift+ f => find in path (goland)
+
+코드 어딧는지 찾기 딱좋다!
+

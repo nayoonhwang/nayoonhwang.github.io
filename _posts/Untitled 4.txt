@@ -1,0 +1,8 @@
+url
+api_key
+
+환경변수 계속 추가
+
+properties
+
+
