@@ -79,7 +79,7 @@ slice = slice[5:10]
 slice = slice[1:len(slice)-1]
 // sliceHeader {
 //	 Length: 3,
-//	 ZerothElement: &buffer[106],
+//	 ZerothElement: &buffer[106]
 // }
 ~~~
 
