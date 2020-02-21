@@ -87,8 +87,50 @@ slice = slice[1:len(slice)-1]
 
 # 함수에 slice를 전달할때
 
-Slice가 포인터를 포함하고 있지만 그자체로서는 "값"이라는 걸 이해하는 게 중요하다. Slice는 포인터와 길이를 가지고 있는 구조체 값이다. 구조체를 가르키는 포인터가 아니다. 
+Slice가 포인터를 포함하고 있지만 그자체로서는 "값"이라는 걸 이해하는 게 중요하다.
 
-이전 예시에서 IndexRune을 호출할때
+Slice는 포인터와 길이를 가지고 있는 구조체 값이다. 구조체를 가르키는 포인터가 아니다. 
+
+이전 예시에서 IndexRune을 호출할때 우리는 slice header의 복사본을 전달한것이다. 
+
+예를 들어,
+~~~go
+func AddOneToEachElement(slice []byte) {
+    for i := range slice {
+        slice[i]++
+    }
+}
+~~~
+slice를 돌면서 값을 1씩 증가시키는 함수가 있다고 할때,
+
+~~~go
+func main() {
+    slice := buffer[10:20]
+    for i := 0; i < len(slice); i++ {
+        slice[i] = byte(i)
+    }
+    fmt.Println("before", slice)
+    AddOneToEachElement(slice)
+    fmt.Println("after", slice)
+}
+~~~
+
+slice header가 *값*으로 전달된다고 하더라도, 헤더에는 배열의 원소를 가르키는 pointer가 있기 때문에, 기존 슬라이스 헤더와 함수에 전달된 복사된 헤더 모두 같은 배열을 가르킨다. 그러므로, 함수가 return될때 slice들의 원소 값들이 변경된 걸 확인할 수 있는 것이다. 
+
+함수 파라미터는 정말 *복사본*이다. 아래 예시에서 확인할 수 있다.
+
+~~~go
+func SubtractOneFromLength(slice []byte) []byte {
+    slice = slice[0 : len(slice)-1]
+    return slice
+}
+
+func main() {
+    fmt.Println("Before: len(slice) =", len(slice))
+    newSlice := SubtractOneFromLength(slice)
+    fmt.Println("After:  len(slice) =", len(slice))
+    fmt.Println("After:  len(newSlice) =", len(newSlice))
+}
+~~~
 
 Go 에서 파라미터를 전달할때 Reference가 아닌, Value로 전달한다. Slice의 경우에도 마찬가지이다. 이는 Pointer와 길이를 가진 구조체 값이라고 할 수 있다.
