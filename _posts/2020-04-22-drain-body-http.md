@@ -2,7 +2,7 @@
 layout: post
 title:  "HTTP Request 를 보낼 때 주의해야할 사항"
 date:   2020-04-22 14:22:22 +0900
-categories: golang
+categories: golang http
 ---
 
 
