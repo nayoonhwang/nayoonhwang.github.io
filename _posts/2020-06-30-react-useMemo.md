@@ -37,7 +37,7 @@ export default class Button extends Component {
 
 예를 들어, User가 버튼을 누르면 => this.setState를 통해서 component의 내부적인 상태가 변경된다. 버튼 내부의 텍스트는 이런 변화에 "react"하고 업데이트 된 텍스트를 받는다.
 
-React Hook을 이용해 함수형 컴포넌트에서도 위와 같이 상태관리를 할 수 있다. 훨씬 쉽고 간결하게.
+하지만, React Hook을 이용해 함수형 컴포넌트에서도 위와 같이 상태관리를 할 수 있다. **훨씬 쉽고 간결하게.**
 
 ## useState
 
